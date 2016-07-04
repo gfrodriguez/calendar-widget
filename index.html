@@ -1,0 +1,51 @@
+<!doctype>
+<html>
+<head>
+<!--
+ Url demo: http://jmacuna73.blogspot.com.ar/2015/02/calendario-publicacion-blogger.html
+ You are free to use the code below and modify it according to your needs.
+ Date: 2015-02-23
+ Author: José María Acuña Morgado - Web Developer
+ Email: jm.acuna73@gmail.com
+ -->
+<title>Calendario con todos los post publicados en Blogger</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+html, body{
+	overflow:hidden
+}
+.tooltip{
+	position:absolute;
+	display:none;
+	border-radius:3px;
+	background:#333;
+	color:#fff;
+	font-size:11px;
+	font-family:Verdana,Geneva,sans-serif,Helvetica;
+    padding:8px;
+	white-space:pre-line
+}
+#calendar{
+	margin:0 auto;
+	width:220px;
+	height:200px
+}
+</style>
+</head>
+<body>
+<div id='calendar'><strong>Loading...</strong></div>
+<script>
+var conf = {
+    bgcolor: '#1e4e7e', //color del calendario
+    newtab:  1, // 0:abre en la misma ventana | 1:abre en nueva ventana
+	tooltip: true, // false:title por defecto | true:tooltip con css
+	start:   1, // 0:Domingo | 1:Lunes
+	days:    "Lunes|Martes|Miercoles|Jueves|Viernes|Sabado|Domingo",
+	months:  "Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre",
+	date:    "Ir al mes actual"
+}
+</script>
+<script src='https://cdn.rawgit.com/jmacuna/calendar-widget/master/create-calendar.js' type='text/javascript'></script>
+<script src='https://jmacuna73.blogspot.com/feeds/posts/summary?max-results=1000&alt=json-in-script&orderby=published&callback=createCalendar' type='text/javascript'></script>
+</body>
+</html>

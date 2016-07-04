@@ -1,0 +1,38 @@
+<!doctype>
+<html>
+<head>
+<!--
+ Url demo: http://jmacuna73.blogspot.com.ar/2015/02/calendario-publicacion-blogger.html
+ You are free to use the code below and modify it according to your needs.
+ Date: 2015-02-23
+ Author: José María Acuña Morgado - Web Developer
+ Email: jm.acuna73@gmail.com
+ -->
+<title>Calendario con todos los post publicados en Blogger</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+iframe#calendar html, #calendar body{
+ overflow:hidden
+}
+iframe#calendar{
+ position:absolute;
+ border:0;
+ width:240px;
+ height:230px
+}
+</style>
+</head>
+<body>
+<iframe id='calendar' src='about:blank' scrolling='no'></iframe>
+<script>
+var conf = {
+    bgcolor: '#741826', //color del calendario
+ start:   1, // 0:Domingo | 1:Lunes
+ days:    "Lunes|Martes|Miercoles|Jueves|Viernes|Sabado|Domingo",
+ months:  "Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre",
+ date:    "Ir al mes actual"
+}
+</script>
+<script src='create-calendar-iframe.js' type='text/javascript'></script>
+</body>
+</html>
