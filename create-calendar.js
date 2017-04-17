@@ -268,24 +268,19 @@ function constructCalendar(){
 	for(var i=1; i<=dayPointer; i++){
 		sHTML += "<td>&nbsp;</td>";
 	}
-
+	
+	sTarget = (conf.newtab)?"_blank":"_parent";
+	sClass = (conf.tooltip)?"masterTooltip":"";
+	
 	for(datePointer=1; datePointer<=numDaysInMonth; datePointer++){
 		dayPointer++;
 		sHTML += "<td style='text-align:right'>";
 		sTitle = "";
 		sHref = "javascript:#";
 		sStyle = confStyle.anchor;
-		sClass = "";
-		sTarget = "_parent";
 
 		for(var i=0; i<confJson.dateText.length; i++){	
 			if(datePointer == confJson.day[i] && (confOther.monthSelected+1) == confJson.month[i]	&& confOther.yearSelected == confJson.year[i]){
-				if(conf.tooltip){
-					sClass = 'masterTooltip';
-				}
-				if(conf.newtab){
-					sTarget = "target='_blank'";
-				}
 				sStyle += "border-radius:100%;border:2px solid "+conf.bgcolor+";cursor:pointer;";
 				//sTitle = confJson.titleText[i];
 				sTitle += '&#10004; ' + confJson.titleText[i] + '\n';
@@ -295,11 +290,11 @@ function constructCalendar(){
 		}
 
 		if(datePointer == confToday.dateNow && confOther.monthSelected == confToday.monthNow && confOther.yearSelected == confToday.yearNow){
-			sHTML += "<a title=\""+sTitle+"\" class='"+sClass+"' style='"+sStyle+"' href='"+sHref+"' "+sTarget+"><span style='font-weight:bolder;color:#E2574C'>&nbsp;"+datePointer+"</span>&nbsp;</a>";
+			sHTML += "<a title=\""+sTitle+"\" class='"+sClass+"' style='"+sStyle+"' href='"+sHref+"' target='"+sTarget+"'><span style='font-weight:bolder;color:#E2574C'>&nbsp;"+datePointer+"</span>&nbsp;</a>";
 		}else if(dayPointer % 7 == (conf.start * -1)+1){
-			sHTML += "<a title=\""+sTitle+"\" class='"+sClass+"' style='"+sStyle+"' href='"+sHref+"' "+sTarget+">&nbsp;<span style='color:#a00;font-weight:bolder'>"+datePointer+"</span>&nbsp;</a>";
+			sHTML += "<a title=\""+sTitle+"\" class='"+sClass+"' style='"+sStyle+"' href='"+sHref+"' target='"+sTarget+"'>&nbsp;<span style='color:#a00;font-weight:bolder'>"+datePointer+"</span>&nbsp;</a>";
 		}else{
-			sHTML += "<a title=\""+sTitle+"\" class='"+sClass+"' style='"+sStyle+"' href='"+sHref+"' "+sTarget+">&nbsp;"+datePointer+"&nbsp;</a>";
+			sHTML += "<a title=\""+sTitle+"\" class='"+sClass+"' style='"+sStyle+"' href='"+sHref+"' target='"+sTarget+"'>&nbsp;"+datePointer+"&nbsp;</a>";
 		}
 
 		sHTML += "";
