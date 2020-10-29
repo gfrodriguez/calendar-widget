@@ -1,6 +1,6 @@
 /*
  * create-calendar-iframe.js v1.0
- * Url demo: http://jmacuna73.blogspot.com/2015/02/calendario-publicacion-blogger.html
+ * Url demo: https://www.tecnoblog.guru/2015/02/calendario-publicacion-blogger.html
  * You are free to use the code below and modify it according to your needs.
  * Date: 2015-04-29
  * Author: José María Acuña Morgado || Web Developer
