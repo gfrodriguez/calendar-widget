@@ -12,7 +12,7 @@ var confJson = {day:'', month:'', year:'', dateText:''},
 	confDate = {monthName:[], dayName:[], today:new Date()},
 	confToday = {dateNow:confDate.today.getDate(), monthNow:confDate.today.getMonth(), yearNow:confDate.today.getYear()},
 	confStyle = {anchor:'text-decoration:none;color:#000;cursor:default;', border:'border:1px solid #6F695A;', family:'verdana,arial;', size:11, bgover:'#d2d2d2'},
-	confSource = {right:'https://cdn.rawgit.com/jmacuna/calendar-widget/master/right.gif', left:'https://cdn.rawgit.com/jmacuna/calendar-widget/master/left.gif', drop:'https://cdn.rawgit.com/jmacuna/calendar-widget/master/drop.gif'}
+	confSource = {right:'https://cdn.jsdelivr.net/gh/jmacuna/calendar-widget@master/right.gif', left:'https://cdn.jsdelivr.net/gh/jmacuna/calendar-widget@master/left.gif', drop:'https://cdn.jsdelivr.net/gh/jmacuna/calendar-widget@master/drop.gif'}
 	confOther = {content:null, contentMonth:null, contentYear:null, contentDate:null, monthSelected:0, yearSelected:0, dateSelected:0, monthPosition:false, monthConstructed:false, yearConstructed:false, interval1:null, interval2:null, timeout1:null, timeout2:null, startYear:0}
 
 window.onload = function(){
