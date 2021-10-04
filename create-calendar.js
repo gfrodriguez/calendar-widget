@@ -308,7 +308,7 @@ function constructCalendar(){
 	document.getElementById("spanYear").innerHTML =	"&nbsp;"+confOther.yearSelected+"&nbsp;<img id='changeYear' src='"+confSource.drop+"' style='width:12px;height:10px;border:0;'/>";
 	
 	if(conf.tooltip){
-		loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', function(){
+		loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', function(){
 			$(document).ready(function() {
 				// Tooltip only Text
 				$('.masterTooltip').hover(function(){
