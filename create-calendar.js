@@ -3,6 +3,7 @@
  * You are free to use the code below and modify it according to your needs.
  * Date: 2021-10-13
  * Modifier: Gabriel Rodríguez || Web Developer
+ * Author: José María Acuña Morgado || Web Developer
  */
 
 var confJson = {day:[], month:[], year:[], dateText:[], titleText:[], href:[]},
