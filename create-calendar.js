@@ -1,17 +1,14 @@
 /*
- * create-calendar.js v1.0
- * Url demo: https://www.tecnoblog.guru/2015/02/calendario-publicacion-blogger.html
+ * create-calendar.js v1.1
  * You are free to use the code below and modify it according to your needs.
- * Date: 2015-02-23
- * Author: José María Acuña Morgado || Web Developer
- * Email: jm.acuna73@gmail.com
+ * Date: 2021-10-13
+ * Modifier: Gabriel Rodríguez || Web Developer
  */
 
 var confJson = {day:[], month:[], year:[], dateText:[], titleText:[], href:[]},
 	confDate = {monthName:[], dayName:[], today:new Date()},
 	confToday = {dateNow:confDate.today.getDate(), monthNow:confDate.today.getMonth(), yearNow:confDate.today.getYear()},
 	confStyle = {anchor:'text-decoration:none;color:#000;cursor:default;', border:'border:1px solid #6F695A;', family:'verdana,arial;', size:11, bgover:'#d2d2d2'},
-	confSource = {right:'https://cdn.jsdelivr.net/gh/jmacuna/calendar-widget@master/right.gif', left:'https://cdn.jsdelivr.net/gh/jmacuna/calendar-widget@master/left.gif', drop:'https://cdn.jsdelivr.net/gh/jmacuna/calendar-widget@master/drop.gif'}
 	confOther = {content:null, contentMonth:null, contentYear:null, contentDate:null, monthSelected:0, yearSelected:0, dateSelected:0, monthPosition:false, monthConstructed:false, yearConstructed:false, interval1:null, interval2:null, timeout1:null, timeout2:null, startYear:0}
 
 function createCalendar(json){
@@ -73,7 +70,7 @@ function createCalendar(json){
 
 		widthCalendar = 200; //calendar size
 		contentDate = "\
-		<div id='contentDate' style='width:"+widthCalendar+"px'><table style='text-align:center;font-family:"+confStyle.family+"font-size:"+confStyle.size+"px;box-shadow:0 0 10px #333;background-color:#fff'><tr id='chead' style='background-color:"+conf.bgcolor+";'><td><table style='width:218px'><tr><td style='padding:2px;font-family:arial; font-size:"+confStyle.size+"px;text-align:center'><span style='color:#fff'><strong><span id='caption'></span></strong></span></td></tr></table></td></tr><tr><td style='padding:5px;background-color:#fff'><span id='content'></span></td></tr>\
+		<style>.sStyle{"+confStyle.anchor+"}.styleTable{font-family:arial;font-size:"+confStyle.size+"px;background-color:#fff;"+confStyle.border+"}.styleDate{background-color:#fff;font-family:"+confStyle.family+"font-weight:bold;font-size:"+confStyle.size+"px;color:#313131;border:1px solid #eee;cursor:pointer;}.styleArrow{border:1px solid #eee;cursor:pointer;padding:1;line-height:8px;}.tableCalendar{text-align:center;font-family:"+confStyle.family+"font-size:"+confStyle.size+"px;box-shadow:0 0 10px #333;background-color:#fff}.subTableCalendar{padding:2px;font-family:arial; font-size:"+confStyle.size+"px;text-align:center} </style><div id='contentDate' style='width:"+widthCalendar+"px'><table class='tableCalendar'><tr id='chead' style='background-color:"+conf.bgcolor+";'><td><table style='width:218px'><tr><td class='subTableCalendar'><span style='color:#fff'><strong><span id='caption'></span></strong></span></td></tr></table></td></tr><tr><td style='padding:5px;background-color:#fff'><span id='content'></span></td></tr>\
 		<tr style='background-color:"+confStyle.bgover+"'><td style='padding:5px' align='center'><span id='lblToday'></span></td></tr>\
 		</table></div><div id='selectMonth' style='position:relative;max-width:"+widthCalendar+"px;visibility:hidden;'></div><div id='selectYear' style='position:relative;top:0;max-width:"+widthCalendar+"px;visibility:hidden;'></div>";
 
@@ -85,13 +82,10 @@ function createCalendar(json){
 		confOther.contentYear = document.getElementById("selectYear").style;
 		confOther.contentDate = document.getElementById("contentDate");
 
-		styleArrow = "border:1px solid #eee;cursor:pointer;padding:1;line-height:8px;";
-		styleDate = "font-family:"+confStyle.family+"font-weight:bold;font-size:"+confStyle.size+"px;color:#313131;border:1px solid #eee;cursor:pointer;"
-
-		headCalendar = "<table width='100%' cellpadding='1' cellspacing='2'><tr><td style='width:5px'><div id='spanLeft' style='"+styleArrow+"' onclick='decMonth()' onmousedown='clearTimeout(confOther.timeout1);confOther.timeout1=setTimeout(\"StartDecMonth()\",500)' onmouseup='clearTimeout(confOther.timeout1);clearInterval(confOther.interval1)'><img id='changeLeft' src='"+confSource.left+"'></div></td>";
-		headCalendar += "<td style='width:5px'><div id='spanRight' style='"+styleArrow+"' onclick='incMonth()' onmousedown='clearTimeout(confOther.timeout1);confOther.timeout1=setTimeout(\"StartIncMonth()\",500)' onmouseup='clearTimeout(confOther.timeout1);clearInterval(confOther.interval1)'><img id='changeRight' src='"+confSource.right+"'></div></td>";
-		headCalendar += "<td style='text-align:right'><span id='spanMonth' style='background-color:#fff;"+styleDate+"'></span></td>";
-		headCalendar += "<td style='text-align:right'><span id='spanYear' style='background-color:#fff;"+styleDate+"'></span></td></tr></table>";
+		headCalendar = "<table width='100%' cellpadding='1' cellspacing='2'><tr><td style='width:5px'><div id='spanLeft' class='styleArrow' onclick='decMonth()' onmousedown='clearTimeout(confOther.timeout1);confOther.timeout1=setTimeout(\"StartDecMonth()\",500)' onmouseup='clearTimeout(confOther.timeout1);clearInterval(confOther.interval1)'></div></td>";
+		headCalendar += "<td style='width:5px'><div id='spanRight' class='styleArrow' onclick='incMonth()' onmousedown='clearTimeout(confOther.timeout1);confOther.timeout1=setTimeout(\"StartIncMonth()\",500)' onmouseup='clearTimeout(confOther.timeout1);clearInterval(confOther.interval1)'></div></td>";
+		headCalendar += "<td style='text-align:right'><span id='spanMonth' class='styleDate'></span></td>";
+		headCalendar += "<td style='text-align:right'><span id='spanYear' class='styleDate'></span></td></tr></table>";
 
 		document.getElementById("caption").innerHTML  =	headCalendar;
 		popUpCalendar();
@@ -138,8 +132,7 @@ function constructMonth(){
 			}
 			sHTML += "<tr><td id='m"+i+"' onmouseover='overDate(this);' onmouseout='this.style.backgroundColor=\"\"' style='cursor:pointer;background-color:#fff' onclick='confOther.monthConstructed=false;confOther.monthSelected="+i+";constructCalendar();popDownMonth();event.cancelBubble=true;'>&nbsp;"+sName+"&nbsp;</td></tr>";
 		}
-		styleTable = "font-family:arial;font-size:"+confStyle.size+"px;background-color:#fff;";
-		document.getElementById("selectMonth").innerHTML = "<table style='"+(styleTable+=confStyle.border)+"' cellspacing='0' onmouseover='clearTimeout(confOther.timeout1)' onmouseout='clearTimeout(confOther.timeout1);confOther.timeout1=setTimeout(\"popDownMonth()\",100);event.cancelBubble=true;'>"+sHTML+"</table>";
+		document.getElementById("selectMonth").innerHTML = "<table class='styleTable' cellspacing='0' onmouseover='clearTimeout(confOther.timeout1)' onmouseout='clearTimeout(confOther.timeout1);confOther.timeout1=setTimeout(\"popDownMonth()\",100);event.cancelBubble=true;'>"+sHTML+"</table>";
 		confOther.monthConstructed = true;
 	}
 }
@@ -187,9 +180,8 @@ function constructYear(){
 			sHTML += "<tr><td id='y"+j+"' onmouseover='overDate(this);' onmouseout='this.style.backgroundColor=\"\"' style='text-align:center;cursor:pointer' onclick='selectYear("+j+");event.cancelBubble=true'>&nbsp;"+sName+"&nbsp;</td></tr>";
 			j++;
 		}
-		styleTable = "font-family:arial;font-size:"+confStyle.size+"px;background-color:#fff;";
 		sHTML += "<tr><td onmouseover='overDate(this);' onmouseout='clearInterval(confOther.interval2);this.style.backgroundColor=\"\"' style='text-align:center;cursor:pointer' onmousedown='clearInterval(confOther.interval2);confOther.interval2=setInterval(\"incYear()\",30);event.cancelBubble=true;' onmouseup='clearInterval(confOther.interval2);event.cancelBubble=true;'><strong>&#8891;</strong></td></tr>";
-		document.getElementById("selectYear").innerHTML	= "<table style='width:44px;"+(styleTable+=confStyle.border)+"' onmouseover='clearTimeout(confOther.timeout2)' onmouseout='clearTimeout(confOther.timeout2);confOther.timeout2=setTimeout(\"popDownYear()\",100)' cellspacing='0'>"+sHTML+"</table>";
+		document.getElementById("selectYear").innerHTML	= "<table class='styleTable' style='width:44px;' onmouseover='clearTimeout(confOther.timeout2)' onmouseout='clearTimeout(confOther.timeout2);confOther.timeout2=setTimeout(\"popDownYear()\",100)' cellspacing='0'>"+sHTML+"</table>";
 		confOther.yearConstructed = true;
 	}
 }
@@ -230,26 +222,27 @@ function constructCalendar(){
 		sHTML += "<td style='text-align:right'>";
 		sTitle = "";
 		sHref = "javascript:;";
-		sStyle = confStyle.anchor;
+		sStyle = "";
+		var sTwoOrMore=0;
 
 		for(var i=0; i<confJson.dateText.length; i++){	
 			if(datePointer == confJson.day[i] && (confOther.monthSelected+1) == confJson.month[i]	&& confOther.yearSelected == confJson.year[i]){
-				sStyle += "border-radius:100%;border:2px solid "+conf.bgcolor+";cursor:pointer;";
+				sHref = confJson.href[i];
+				if(sStyle.indexOf("border-radius:100%;border:2px solid "+conf.bgcolor+";cursor:pointer;")==-1){
+					sStyle += "border-radius:100%;border:2px solid "+conf.bgcolor+";cursor:pointer;";					
+				}
 				//sTitle = confJson.titleText[i];
 				sTitle += '&#10004; ' + confJson.titleText[i] + '\n';
-				sHref = confJson.href[i];
 				//break;
 			}
 		}
-
 		if(datePointer == confToday.dateNow && confOther.monthSelected == confToday.monthNow && confOther.yearSelected == confToday.yearNow){
-			sHTML += "<a title=\""+sTitle+"\" data-toggle='tooltip' style='"+sStyle+"' href='"+sHref+"' target='"+sTarget+"'><span style='font-weight:bolder;color:#E2574C'>&nbsp;"+datePointer+"</span>&nbsp;</a>";
+			sHTML += "<a title=\""+sTitle+"\" class='sStyle' "+(sStyle!="" ? "style='"+sStyle+"'" : "")+" href='"+sHref+"' target='"+sTarget+"'><span style='font-weight:bolder;color:#E2574C'>&nbsp;"+datePointer+"</span>&nbsp;</a>";
 		}else if(dayPointer % 7 == (conf.start * -1)+1){
-			sHTML += "<a title=\""+sTitle+"\" data-toggle='tooltip' style='"+sStyle+"' href='"+sHref+"' target='"+sTarget+"'>&nbsp;<span style='color:#a00;font-weight:bolder'>"+datePointer+"</span>&nbsp;</a>";
+			sHTML += "<a title=\""+sTitle+"\" data-calendar-toggle='tooltip' class='sStyle' "+(sStyle!="" ? "style='"+sStyle+"'" : "")+" href='"+sHref+"' target='"+sTarget+"'>&nbsp;<span style='color:#a00;font-weight:bolder'>"+datePointer+"</span>&nbsp;</a>";
 		}else{
-			sHTML += "<a title=\""+sTitle+"\" data-toggle='tooltip' style='"+sStyle+"' href='"+sHref+"' target='"+sTarget+"'>&nbsp;"+datePointer+"&nbsp;</a>";
-		}
-
+			sHTML += "<a title=\""+sTitle+"\" class='sStyle' "+(sStyle!="" ? "style='"+sStyle+"'" : "")+" href='"+sHref+"' target='"+sTarget+"'>&nbsp;"+datePointer+"&nbsp;</a>";
+		}		
 		sHTML += "";
 		if((dayPointer+conf.start) % 7 == conf.start){
 			sHTML += "</tr><tr>";
@@ -261,12 +254,12 @@ function constructCalendar(){
 	document.getElementById("spanYear").innerHTML =	"&nbsp;"+confOther.yearSelected+"&nbsp;";
 	
 	if(conf.tooltip){
-		var tooltipTriggerList = [].slice.call(document.querySelectorAll("[data-toggle='tooltip']"))
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll("[data-calendar-toggle='tooltip']"))
 		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 			return new bootstrap.Tooltip(tooltipTriggerEl)
 			})
-		}
 	}
+}	
 function popUpCalendar(){
 	var aData =	confJson.dateText[0].split("/");
 	confOther.dateSelected = parseInt(aData[0], 10);
