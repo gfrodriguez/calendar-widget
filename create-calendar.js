@@ -1,5 +1,5 @@
 /*
- * create-calendar.js v1.1
+ * create-calendar.js v1.2
  * You are free to use the code below and modify it according to your needs.
  * Date: 2021-10-13
  * Modifier: Gabriel Rodríguez || Web Developer
@@ -249,15 +249,18 @@ function constructCalendar() {
                 }
                 //sTitle = confJson.titleText[i];
                 sTitle += '&#10004; ' + confJson.titleText[i] + '\n';
+				if (conf.tooltip) {
+					sTitle +='<br>';
+				}
                 //break;
             }
         }
         if (datePointer == confToday.dateNow && confOther.monthSelected == confToday.monthNow && confOther.yearSelected == confToday.yearNow) {
-            sHTML += "<a " + (sTitle != "" ? "title='" + sTitle + "' data-calendar-toggle='tooltip'" : "") + " class='sStyle' " + (sStyle != "" ? "style='" + sStyle + "'" : "") + " href='" + sHref + "' target='" + sTarget + "'><span style='font-weight:bolder;color:#E2574C'>&nbsp;" + datePointer + "</span>&nbsp;</a>";
+            sHTML += "<a " + (sTitle != "" ? "data-calendar-toggle='tooltip' data-bs-html='true' title='" + sTitle + "'" : "") + " class='sStyle' " + (sStyle != "" ? "style='" + sStyle + "'" : "") + " href='" + sHref + "' target='" + sTarget + "'><span style='font-weight:bolder;color:#E2574C'>&nbsp;" + datePointer + "</span>&nbsp;</a>";
         } else if (dayPointer % 7 == (conf.start * -1) + 1) {
-            sHTML += "<a " + (sTitle != "" ? "title='" + sTitle + "' data-calendar-toggle='tooltip'" : "") + " class='sStyle' " + (sStyle != "" ? "style='" + sStyle + "'" : "") + " href='" + sHref + "' target='" + sTarget + "'>&nbsp;<span style='color:#a00;font-weight:bolder'>" + datePointer + "</span>&nbsp;</a>";
+            sHTML += "<a " + (sTitle != "" ? "data-calendar-toggle='tooltip' data-bs-html='true' title='" + sTitle + "'" : "") + " class='sStyle' " + (sStyle != "" ? "style='" + sStyle + "'" : "") + " href='" + sHref + "' target='" + sTarget + "'>&nbsp;<span style='color:#a00;font-weight:bolder'>" + datePointer + "</span>&nbsp;</a>";
         } else {
-            sHTML += "<a " + (sTitle != "" ? "title='" + sTitle + "' data-calendar-toggle='tooltip'" : "") + " class='sStyle' " + (sStyle != "" ? "style='" + sStyle + "'" : "") + " href='" + sHref + "' target='" + sTarget + "'>&nbsp;" + datePointer + "&nbsp;</a>";
+            sHTML += "<a " + (sTitle != "" ? "data-calendar-toggle='tooltip' data-bs-html='true' title='" + sTitle + "'" : "") + " class='sStyle' " + (sStyle != "" ? "style='" + sStyle + "'" : "") + " href='" + sHref + "' target='" + sTarget + "'>&nbsp;" + datePointer + "&nbsp;</a>";
         }
         sHTML += "";
         if ((dayPointer + conf.start) % 7 == conf.start) {
